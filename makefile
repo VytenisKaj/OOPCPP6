@@ -7,10 +7,10 @@ TEST_TARGET = test.exe
 TARGET = program.exe
 DEL = del
 FLAGS = -std=c++11 -Wall
-DOXY = "D:\Program Files\doxygen\bin\doxygen"
+DOXY = doxygen
 LOG_FILE = testlog.txt
 DOC_DIR = docdir
-
+KEEP = echo This is a .keep file for git > git.keep
 
 all : doc $(TARGET) test
 
@@ -37,6 +37,9 @@ clean:
 
 doc : Car.h
 	$(DOXY)
+	cd $(DOC_DIR) && $(KEEP)
+	cd $(DOC_DIR)\html && $(KEEP)
+	cd $(DOC_DIR)\html\search && $(KEEP)
 
 deploy : test
 	git add .
